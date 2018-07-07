@@ -1,5 +1,7 @@
 import core.FileDownLoaderApacheHTTPImpl;
+import core.FileDownLoaderFTPImpl;
 import models.FilePath;
+import models.Protocol;
 import utils.Constants;
 
 import java.io.File;
@@ -12,13 +14,19 @@ import java.util.stream.Collectors;
 public class FileDownloadUtilityDriver {
 
     static FileDownLoaderApacheHTTPImpl fileDownLoaderApache = new FileDownLoaderApacheHTTPImpl();
+    static FileDownLoaderFTPImpl fileDownLoaderFTP = new FileDownLoaderFTPImpl();
 
     public static void main(String[] args) throws Exception{
         FileDownloadUtilityDriver obj = new FileDownloadUtilityDriver();
         List<String> filePathStrings = obj.readFile("filenames");
         List<FilePath> filePaths = filePathStrings.stream().map(filePath-> new FilePath(filePath)).collect(Collectors.toList());
-        filePaths.forEach(filePath -> System.out.print(filePath));
-        filePaths.forEach(filePath -> fileDownLoaderApache.downloadFile(filePath, Constants.ROOT_PATH + filePath.toString().hashCode()));
+        filePaths.forEach(filePath -> {
+            if(filePath.getProtocol()== Protocol.HTTP || filePath.getProtocol()== Protocol.HTTPS){
+                fileDownLoaderApache.downloadFile(filePath, Constants.ROOT_PATH + filePath.getFileName());
+            } else if(filePath.getProtocol() == Protocol.FTP){
+                fileDownLoaderFTP.downloadFile(filePath, Constants.ROOT_PATH + filePath.getFileName());
+            }
+        });
     }
 
     private List<String> readFile(String fileName) {
