@@ -15,15 +15,18 @@ public class FileDownLoaderFTPImpl implements FileDownLoader {
         try {
             File file = new File(fileLocation);
             FileOutputStream dfile = new FileOutputStream(file);
-
             ftpClient.connect(filePath.getRootPath());
-            ftpClient.user(filePath.getServerUserName());
-            ftpClient.pass(filePath.getServerPassword());
+            if(filePath.getServerUserName()!=null) ftpClient.user(filePath.getServerUserName());
+            if(filePath.getServerPassword()!=null) ftpClient.pass(filePath.getServerPassword());
             ftpClient.retrieveFile(filePath.getFilePathInServer(), dfile);
+            dfile.close();
+            ftpClient.disconnect();
+            System.out.println("Done with " + filePath.getFileName());
+            return true;
         } catch (IOException e) {
             e.printStackTrace();
             return false;
         }
-        return false;
+
     }
 }

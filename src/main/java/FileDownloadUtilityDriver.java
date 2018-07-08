@@ -19,11 +19,12 @@ public class FileDownloadUtilityDriver {
     public static void main(String[] args) throws Exception{
         FileDownloadUtilityDriver obj = new FileDownloadUtilityDriver();
         List<String> filePathStrings = obj.readFile("filenames");
-        List<FilePath> filePaths = filePathStrings.stream().map(filePath-> new FilePath(filePath)).collect(Collectors.toList());
+        List<FilePath> filePaths = filePathStrings.stream().map(
+                filePath-> new FilePath(filePath)).collect(Collectors.toList());
         filePaths.forEach(filePath -> {
             if(filePath.getProtocol()== Protocol.HTTP || filePath.getProtocol()== Protocol.HTTPS){
                 fileDownLoaderApache.downloadFile(filePath, Constants.ROOT_PATH + filePath.getFileName());
-            } else if(filePath.getProtocol() == Protocol.FTP){
+            } else if(filePath.getProtocol() == Protocol.FTP || filePath.getProtocol() == Protocol.SFTP){
                 fileDownLoaderFTP.downloadFile(filePath, Constants.ROOT_PATH + filePath.getFileName());
             }
         });

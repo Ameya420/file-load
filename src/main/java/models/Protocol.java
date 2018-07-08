@@ -3,7 +3,8 @@ package models;
 public enum  Protocol {
     HTTP("http"),
     HTTPS("https"),
-    FTP("ftp");
+    FTP("ftp"),
+    SFTP("sftp");
 
     private String protocolTypeString;
 
