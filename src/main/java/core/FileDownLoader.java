@@ -13,5 +13,5 @@ public interface FileDownLoader {
      * @param fileLocation Local file destination where we intend to save file
      * @return true in case of success, false otherwise
      */
-    boolean downloadFile(FilePath filePath, String fileLocation);
+    boolean downloadFile(FilePath filePath, String fileLocation, long timeOutInMillis);
 }

@@ -1,3 +1,4 @@
+
 import models.FilePath;
 import models.Protocol;
 import org.junit.Test;
@@ -11,8 +12,8 @@ public class FilePathTest {
         FilePath filePath = new FilePath("https://github.com/github/choosealicense.com/blob/gh-pages/_data/rules.yml");
         assertEquals(filePath.getProtocol(), Protocol.HTTPS);
         assertEquals(filePath.getRootPath(), "github.com");
-        assertEquals(filePath.getServerPassword(), null);
-        assertEquals(filePath.getServerUserName(), null);
+        assertEquals(filePath.getServerPassword(), "anonymous");
+        assertEquals(filePath.getServerUserName(), "anonymous");
         assertEquals(filePath.getUrl().toString(), "https://github.com/github/choosealicense.com/blob/gh-pages/_data/rules.yml");
         assertEquals(filePath.getUrlString(), "https://github.com/github/choosealicense.com/blob/gh-pages/_data/rules.yml");
         assertEquals(filePath.getFileName(), "rules.yml");
@@ -27,7 +28,6 @@ public class FilePathTest {
         assertEquals(filePath.getRootPath(), "ftp.dlptest.com");
         assertEquals(filePath.getServerUserName(), "dlpuser@dlptest.com");
         assertEquals(filePath.getServerPassword(), "3D6XZV9MKdhM5fF");
-        assertEquals(filePath.getUrl().toString(), "ftp://ftp.dlptest.com/.ftpquota");
         assertEquals(filePath.getUrlString(), "ftp://ftp.dlptest.com/.ftpquota");
         assertEquals(filePath.getFileName(), ".ftpquota");
         assertEquals(filePath.getFilePathInServer(), "/.ftpquota");

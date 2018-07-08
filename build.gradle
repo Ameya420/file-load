@@ -17,4 +17,7 @@ dependencies {
     compile group: 'commons-net', name: 'commons-net', version: '3.3'
     // https://mvnrepository.com/artifact/it.sauronsoftware/ftp4j
     compile group: 'it.sauronsoftware', name: 'ftp4j', version: '1.6'
+    // https://mvnrepository.com/artifact/org.slf4j/slf4j-api
+    compile group: 'org.slf4j', name: 'slf4j-api', version: '1.7.25'
+    compile group: 'org.slf4j', name: 'slf4j-simple', version: '1.7.25'
 }
