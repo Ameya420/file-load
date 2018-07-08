@@ -30,4 +30,24 @@ public class FileDownLoadUtils {
 
         return results;
     }
+
+    public static List<String> readFileAbs(String fileName) {
+        List<String> results = new ArrayList<>();
+        File file = new File(fileName);
+
+        try (Scanner scanner = new Scanner(file)) {
+
+            while (scanner.hasNextLine()) {
+                String line = scanner.nextLine();
+                results.add(line);
+            }
+
+            scanner.close();
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        return results;
+    }
 }

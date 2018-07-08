@@ -21,6 +21,9 @@ public class FileDownLoaderFTPImpl implements FileDownLoader {
             FTPClient ftpClient = new FTPClient();
 
             FileOutputStream dfile = new FileOutputStream(file);
+            ftpClient.setConnectTimeout((int) timeOutInMillis);
+            ftpClient.setDefaultTimeout((int) timeOutInMillis);
+            ftpClient.setDataTimeout((int) timeOutInMillis);
             ftpClient.connect(filePath.getRootPath());
             if(filePath.getServerUserName()!=null) ftpClient.user(filePath.getServerUserName());
             if(filePath.getServerPassword()!=null) ftpClient.pass(filePath.getServerPassword());
@@ -35,7 +38,7 @@ public class FileDownLoaderFTPImpl implements FileDownLoader {
             } catch (IOException e1) {
                 logger.error("Unable to delete file " + file.getAbsolutePath(), e1);
             }
-            logger.error("Unable to download file " + file.getAbsolutePath(), e);
+            logger.error("Unable to download file " + filePath.getUrlString(), e);
             return false;
         }
 

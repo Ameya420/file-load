@@ -5,6 +5,7 @@ import models.Protocol;
 import utils.Constants;
 import utils.FileDownLoadUtils;
 
+import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -14,8 +15,8 @@ public class FileDownloadUtilityDriver {
     static FileDownLoaderFTPImpl fileDownLoaderFTP = new FileDownLoaderFTPImpl();
 
     public static void main(String[] args) throws Exception{
-        List<String> filePathStrings = FileDownLoadUtils.readFile("filenames");
-        List<FilePath> filePaths = filePathStrings.stream().map(
+        String fileName = args[0];
+        List<FilePath> filePaths = FileDownLoadUtils.readFileAbs(fileName).stream().map(
                 filePath-> new FilePath(filePath)).collect(Collectors.toList());
         filePaths.forEach(filePath -> {
             if(filePath.getProtocol()== Protocol.HTTP || filePath.getProtocol()== Protocol.HTTPS){
