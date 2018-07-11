@@ -29,4 +29,15 @@ public class FileDownLoaderApacheHTTPImpl implements FileDownLoader {
             return false;
         }
     }
+
+    @Override
+    public boolean downloadFile(FilePath filePath, String fileLocation, long timeOutInMillis, int numberOfRetries) {
+        int retryCount = 1;
+        while (retryCount<=numberOfRetries){
+            if(!downloadFile(filePath, fileLocation, timeOutInMillis)){
+                retryCount++;
+            } else return true;
+        }
+        return false;
+    }
 }

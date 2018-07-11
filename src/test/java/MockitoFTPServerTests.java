@@ -11,7 +11,7 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotEquals;
 import static utils.Constants.ROOT_PATH;
 
-public class MockitoTests {
+public class MockitoFTPServerTests {
     FakeFtpServer fakeFtpServer;
     int port = 8989;
     String fileContent = "This is file \n This contain something";

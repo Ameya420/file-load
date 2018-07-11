@@ -7,6 +7,7 @@ sourceCompatibility = 1.8
 
 repositories {
     mavenCentral()
+    jcenter()
 }
 
 dependencies {
@@ -18,6 +19,12 @@ dependencies {
     // https://mvnrepository.com/artifact/org.slf4j/slf4j-api
     compile group: 'org.slf4j', name: 'slf4j-api', version: '1.7.25'
     compile group: 'org.slf4j', name: 'slf4j-simple', version: '1.7.25'
+    testCompile 'org.mockito:mockito-core:2.7.22'
+    // https://mvnrepository.com/artifact/org.mockftpserver/MockFtpServer
+    testCompile group: 'org.mockftpserver', name: 'MockFtpServer', version: '2.7.1'
+    // https://mvnrepository.com/artifact/com.github.tomakehurst/wiremock
+    testCompile "com.github.tomakehurst:wiremock:2.18.0"
+
 }
 
 jar {

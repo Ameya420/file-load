@@ -1,10 +1,10 @@
-To run this
-Run "gradle fatjar"
+Welcome,
 
-then run following command
-java -cp file-load-all-1.0-SNAPSHOT.jar FileDownloadUtilityDriver {file containing list of files to be downloaded}
+you are connected to an FTP or SFTP server used for testing purposes by Rebex FTP/SSL or Rebex SFTP sample code.
+Only read access is allowed and the FTP download speed is limited to 16KBps.
 
-FileDownloadUtilityDriver is just a test implementation.
-For detailed implementation see documentation of FileDownloaderHandler.
-It contains different implementations according to need. 
-Take look at test cases for clear Idea about the code.
+For infomation about Rebex FTP/SSL, Rebex SFTP and other Rebex .NET components, please visit our website at http://www.rebex.net/
+
+For feedback and support, contact support@rebex.net
+
+Thanks!

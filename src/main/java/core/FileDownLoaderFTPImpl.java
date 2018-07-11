@@ -24,7 +24,10 @@ public class FileDownLoaderFTPImpl implements FileDownLoader {
             ftpClient.setConnectTimeout((int) timeOutInMillis);
             ftpClient.setDefaultTimeout((int) timeOutInMillis);
             ftpClient.setDataTimeout((int) timeOutInMillis);
-            ftpClient.connect(filePath.getRootPath());
+            if(filePath.getPort()>0)
+                ftpClient.connect(filePath.getRootPath(), filePath.getPort());
+            else
+                ftpClient.connect(filePath.getRootPath());
             if(filePath.getServerUserName()!=null) ftpClient.user(filePath.getServerUserName());
             if(filePath.getServerPassword()!=null) ftpClient.pass(filePath.getServerPassword());
             ftpClient.retrieveFile(filePath.getFilePathInServer(), dfile);
@@ -41,6 +44,16 @@ public class FileDownLoaderFTPImpl implements FileDownLoader {
             logger.error("Unable to download file " + filePath.getUrlString(), e);
             return false;
         }
+    }
 
+    @Override
+    public boolean downloadFile(FilePath filePath, String fileLocation, long timeOutInMillis, int numberOfRetries) {
+        int retryCount = 1;
+        while (retryCount<=numberOfRetries){
+            if(!downloadFile(filePath, fileLocation, timeOutInMillis)){
+                retryCount++;
+            } else return true;
+        }
+        return false;
     }
 }

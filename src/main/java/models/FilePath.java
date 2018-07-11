@@ -9,6 +9,7 @@ import java.net.URL;
 public class FilePath {
     // URL of file as is
     private String urlString;
+    private int port;
     private Protocol protocol;
     // Mostly its serverName
     private String rootPath;
@@ -49,6 +50,14 @@ public class FilePath {
             // TODO Do something For Malformed Exception
             e.printStackTrace();
         }
+    }
+
+    public int getPort() {
+        return port;
+    }
+
+    public void setPort(int port) {
+        this.port = port;
     }
 
     public String getFileName() {
